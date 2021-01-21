@@ -14,9 +14,9 @@
     const BUTTON_HEIGHT = 60;
     const BUTTON_TEXT_SIZE = 30;
     const CANVAS_WIDTH = 450;
-    const CANVAS_HEIGHT = 750;
+    const CANVAS_HEIGHT = 700;
     const DAMPING = 0.8;//減衰率
-    const FLOOR_Y = 700;    //床の高さ
+    const FLOOR_Y = 600;    //床の高さ
     const RANKS = {
         FEK: 0,
         AĈA: 1,
@@ -143,7 +143,7 @@
 
         const box = new PIXI.Graphics()
             .beginFill(0x000000)
-            .drawRect(0, FLOOR_Y, CANVAS_WIDTH, CANVAS_HEIGHT)
+            .drawRect(0, FLOOR_Y, CANVAS_WIDTH, CANVAS_HEIGHT-FLOOR_Y)
             .endFill();
 
         app.stage.addChild(box);
@@ -342,7 +342,7 @@
         retryButton.visible = false;
         tweetButton.visible = false;
 
-        createContainer(app.screen.width / 2, app.screen.height - 150);
+        createContainer(app.screen.width / 2, app.screen.height - 200);
         createCircumflex(app.screen.width / 2 + 10, HOLD_Y);
 
         gameState = 0;
