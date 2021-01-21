@@ -290,7 +290,12 @@
 
         button.interactive = true;
         const buttonClick = () => {
-            window.open(`https://twitter.com/intent/tweet?text=${score}個のサーカムフレックスを積み上げました。ランクは"${rank}"です。https://www.google.com/`, '_blank');
+            const url = `https://twitter.com/intent/tweet?text=${score}個のサーカムフレックスを積み上げました。ランクは"${rank}"です。https://www.google.com/`;
+            if(window.open(url,"_blank")){
+
+            }else{
+              window.location.href = url;
+            }
         }
         button
             .on('click', () => {
@@ -343,18 +348,8 @@
         gameState = 0;
     }
 
-    const init = () => {
-        //pixi.js
-        app = new PIXI.Application({
-            width: CANVAS_WIDTH,
-            height: CANVAS_HEIGHT,
-            backgroundColor: 0xe3e3e3,
-            autoDensity: true,
-        });
-        const stage = document.getElementById('stage');
-        stage.appendChild(app.view);
-
-        //画面サイズに合わせる
+    //画面サイズに合わせる
+    const resizeCanvas = () => {
         const [bodyW, bodyH] = [document.body.clientWidth, document.body.clientHeight];
         if (bodyW < bodyH) {
             canvasZoom = bodyW / CANVAS_WIDTH;
@@ -366,7 +361,25 @@
             stage.style.height = `${bodyH}px`;
         }
         app.view.style.width = '100%';
-        app.view.style.height = '100%';
+        app.view.style.height = '100%';        
+    }
+
+    const init = () => {        
+        //pixi.js
+        app = new PIXI.Application({
+            width: CANVAS_WIDTH,
+            height: CANVAS_HEIGHT,
+            backgroundColor: 0xe3e3e3,
+            autoDensity: true,
+        });
+        const stage = document.getElementById('stage');
+        stage.appendChild(app.view);
+        resizeCanvas();
+
+        //ウィンドウサイズが変更されたら
+        window.addEventListener( 'resize', function() {
+            resizeCanvas();
+        });
 
         //p2.js
         world = new p2.World({
