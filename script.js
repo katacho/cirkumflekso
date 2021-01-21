@@ -351,6 +351,7 @@
     //画面サイズに合わせる
     const resizeCanvas = () => {
         const [bodyW, bodyH] = [document.body.clientWidth, document.body.clientHeight];
+        console.log(bodyW,bodyH)
         if (bodyW < bodyH) {
             canvasZoom = bodyW / CANVAS_WIDTH;
             stage.style.width = `${bodyW}px`;
