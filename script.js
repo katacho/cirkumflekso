@@ -14,9 +14,9 @@
     const BUTTON_HEIGHT = 60;
     const BUTTON_TEXT_SIZE = 30;
     const CANVAS_WIDTH = 450;
-    const CANVAS_HEIGHT = 700;
+    const CANVAS_HEIGHT = 650;
     const DAMPING = 0.8;//減衰率
-    const FLOOR_Y = 600;    //床の高さ
+    const FLOOR_HEIGHT = 100;    //床の高さ
     const RANKS = {
         FEK: 0,
         AĈA: 1,
@@ -133,7 +133,7 @@
         const body = new p2.Body({
             fixedRotation: true,
             type: p2.Body.STATIC,
-            position: [0, pixiToP2Y(FLOOR_Y)],
+            position: [0, pixiToP2Y(CANVAS_HEIGHT-FLOOR_HEIGHT)],
             angle: 0
         });
         body.name = 'floor';
@@ -143,7 +143,7 @@
 
         const box = new PIXI.Graphics()
             .beginFill(0x000000)
-            .drawRect(0, FLOOR_Y, CANVAS_WIDTH, CANVAS_HEIGHT-FLOOR_Y)
+            .drawRect(0, CANVAS_HEIGHT-FLOOR_HEIGHT, CANVAS_WIDTH, FLOOR_HEIGHT)
             .endFill();
 
         app.stage.addChild(box);
