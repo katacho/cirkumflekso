@@ -290,7 +290,7 @@
 
         button.interactive = true;
         const buttonClick = () => {
-            const url = `https://twitter.com/intent/tweet?text=${score}個のサーカムフレックスを積み上げました。ランクは"${rank}"です。https://www.google.com/`;
+            const url = `https://twitter.com/intent/tweet?text=${score}個のサーカムフレックスを積み上げました。ランクは"${rank}"です。https://katacho.github.io/cirkumflekso/`;
             if(window.open(url,"_blank")){
 
             }else{
