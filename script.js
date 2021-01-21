@@ -16,6 +16,7 @@
     const CANVAS_WIDTH = 450;
     const CANVAS_HEIGHT = 750;
     const DAMPING = 0.8;//減衰率
+    const FLOOR_Y = 700;    //床の高さ
     const RANKS = {
         FEK: 0,
         AĈA: 1,
@@ -132,13 +133,20 @@
         const body = new p2.Body({
             fixedRotation: true,
             type: p2.Body.STATIC,
-            position: [0, pixiToP2Y(app.screen.height)],
+            position: [0, pixiToP2Y(FLOOR_Y)],
             angle: 0
         });
         body.name = 'floor';
         const planeShape = new p2.Plane();
         body.addShape(planeShape);
         world.addBody(body);
+
+        const box = new PIXI.Graphics()
+            .beginFill(0x000000)
+            .drawRect(0, FLOOR_Y, CANVAS_WIDTH, CANVAS_HEIGHT)
+            .endFill();
+
+        app.stage.addChild(box);
     }
 
     //入れ物
@@ -329,7 +337,7 @@
         retryButton.visible = false;
         tweetButton.visible = false;
 
-        createContainer(app.screen.width / 2, app.screen.height - 100);
+        createContainer(app.screen.width / 2, app.screen.height - 150);
         createCircumflex(app.screen.width / 2 + 10, HOLD_Y);
 
         gameState = 0;
